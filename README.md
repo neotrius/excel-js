@@ -7,7 +7,7 @@ The cv-editor project is focused to enhance JS skills and programming in general
 *cv-editor is a part of a bigger project*
 
 **Skills to master**
-- ECMA Script 2015+
+- ECMAScript 2015+
 - SCSS/SASS, CSS3 animation
 - MVC
 - OOP + SOLID

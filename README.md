@@ -1,5 +1,10 @@
 # cv-editor
+
 Building a JS framework with [vladilen.ru](https://vladilen.ru) help
+
+The cv-editor project is focused to enhance JS skills and programming in general
+
+*cv-editor is a part of a bigger project*
 
 **Skills to master**
 - ECMA Script 2015+

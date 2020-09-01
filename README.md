@@ -9,4 +9,5 @@ Building a JS framework with [vladilen.ru](https://vladilen.ru) help
 - Unit Testing
 
 **Progress**
+
 1/9/2020 - Webpack configuration complete

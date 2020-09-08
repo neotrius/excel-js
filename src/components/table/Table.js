@@ -32,8 +32,24 @@ export class Table extends ExcelComponent {
   // }
 
   onMousedown(event){
+
     if (event.target.dataset.resize){
-      console.log('Start resizing', event.target.dataset.resize)
+      const resizer = event.target
+      const parent = resizer.closest('[data-type="resizable"]')
+      const coords = parent.getBoundingClientRect()
+
+      console.log(parent.getBoundingClientRect())
+
+      document.onmousemove = (ev) =>{
+        const delta = ev.pageX - coords.right
+        const value = coords.width + delta
+        parent.style.width = value + 'px'
+      }
+
+      document.onmouseup = () => {
+        document.onmousemove = null
+      }
+
     }
   }
 }

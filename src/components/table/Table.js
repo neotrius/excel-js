@@ -6,7 +6,7 @@ export class Table extends ExcelComponent {
 
   constructor(root){
     super(root, {
-      listeners: ['click', 'mousedown', 'mousemove', 'mouseup']
+      // listeners: ['click', 'mousedown', 'mousemove', 'mouseup']
     })
   }
 
@@ -14,19 +14,19 @@ export class Table extends ExcelComponent {
     return createTable()
   }
 
-  onClick(){
-    console.log('clicked')
-  }
-
-  onMousedown(event){
-    console.log('mouse down', event.target)
-  }
-
-  onMousemove(){
-    console.log('mouse move')
-  }
-
-  onMouseup(){
-    console.log('mouse up')
-  }
+  // onClick(){
+  //   console.log('clicked')
+  // }
+  //
+  // onMousedown(event){
+  //   console.log('mouse down', event.target)
+  // }
+  //
+  // onMousemove(){
+  //   console.log('mouse move')
+  // }
+  //
+  // onMouseup(){
+  //   console.log('mouse up')
+  // }
 }

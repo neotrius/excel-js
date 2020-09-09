@@ -38,12 +38,15 @@ export class Table extends ExcelComponent {
       const parent = resizer.closest('[data-type="resizable"]')
       const coords = parent.getBoundingClientRect()
 
-      console.log(parent.getBoundingClientRect())
+      // console.log(parent.dataset.col)
+      console.log(parent.data)
 
-      document.onmousemove = (ev) =>{
+      document.onmousemove = (ev) => {
         const delta = ev.pageX - coords.right
         const value = coords.width + delta
         parent.style.width = value + 'px'
+        document.querySelectorAll(`[data-col="${parent.dataset.col}"`)
+        .forEach(el => el.style.width = value + 'px')
       }
 
       document.onmouseup = () => {

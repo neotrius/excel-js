@@ -4,7 +4,7 @@ import {createTable} from "@/components/table/table.template";
 export class Table extends ExcelComponent {
   static className = 'excel__table'
 
-  constructor(root){
+  constructor(root) {
     super(root, {
       // listeners: ['click', 'mousedown', 'mousemove', 'mouseup']
       listeners: ['mousedown']
@@ -31,24 +31,31 @@ export class Table extends ExcelComponent {
   //   console.log('mouse up')
   // }
 
-  onMousedown(event){
+  onMousedown(event) {
 
-    if (event.target.dataset.resize){
+    if (event.target.dataset.resize) {
+
       const resizer = event.target
       const parent = resizer.closest('[data-type="resizable"]')
       const coords = parent.getBoundingClientRect()
-
+      const type = resizer.dataset.resize
 
       const cells = document.querySelectorAll(`[data-col="${parent.dataset.col}"`)
 
-      // console.log(parent.dataset.col)
-      console.log(parent.data)
+      console.log(parent.dataset.col)
 
       document.onmousemove = (ev) => {
-        const delta = ev.pageX - coords.right
-        const value = coords.width + delta
-        parent.style.width = value + 'px'
-        cells.forEach(el => el.style.width = value + 'px')
+        if (type === 'col') {
+          const delta = ev.pageX - coords.right
+          const value = coords.width + delta
+          parent.style.width = value + 'px'
+          cells.forEach(el => el.style.width = value + 'px')
+
+        } else {
+          const delta = ev.pageY - coords.bottom
+          const value = coords.height + delta
+          parent.style.height = value + 'px'
+        }
       }
 
       document.onmouseup = () => {

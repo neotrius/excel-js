@@ -1,17 +1,16 @@
 class Dom {
   constructor(selector) {
-    this.$$listeners = {}
-    this.el = typeof selector === 'string'
-        ? document.querySelector(selector)
-        : selector
+    this.$el = typeof selector === 'string'
+      ? document.querySelector(selector)
+      : selector
   }
 
   html(html) {
     if (typeof html === 'string') {
-      this.el.innerHTML = html
+      this.$el.innerHTML = html
       return this
     }
-    return this.el.innerHTML.trim()
+    return this.$el.outerHTML.trim()
   }
 
   clear() {
@@ -20,45 +19,49 @@ class Dom {
   }
 
   on(eventType, callback) {
-    // this.$$listeners[eventType] = callback
-    this.el.addEventListener(eventType, callback)
+    this.$el.addEventListener(eventType, callback)
   }
 
   off(eventType, callback) {
-    this.el.removeEventListener(eventType, callback)
+    this.$el.removeEventListener(eventType, callback)
   }
 
   append(node) {
     if (node instanceof Dom) {
-      node = node.el
+      node = node.$el
     }
 
     if (Element.prototype.append) {
-      this.el.append(node)
+      this.$el.append(node)
     } else {
-      this.el.appendChild(node)
+      this.$el.appendChild(node)
     }
+
     return this
   }
 
-  get data(){
-    return this.el.dataset
+  get data() {
+    return this.$el.dataset
   }
 
-  closest(selector){
-    return this.el.closest(selector)
+  closest(selector) {
+    return $(this.$el.closest(selector))
   }
 
-  getCoords(){
-    return this.el.getBoundingClientRect()
+  getCoords() {
+    return this.$el.getBoundingClientRect()
   }
 
-  findAll(selector){
-    return this.el.querySelectorAll(selector)
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector)
   }
 
-  css(styles = {}){
-
+  css(styles = {}) {
+    Object
+        .keys(styles)
+        .forEach(key => {
+          this.$el.style[key] = styles[key]
+        })
   }
 }
 

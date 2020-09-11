@@ -1,8 +1,8 @@
 @import "variables";
 @import "mixins";
 
-.excel__formula {
 
+.excel__formula {
   position: absolute;
   left: 0;
   right: 0;
@@ -28,5 +28,4 @@
     height: 100%;
     color: #000;
   }
-
 }

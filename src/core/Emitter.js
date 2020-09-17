@@ -1,45 +1,49 @@
 export class Emitter {
-	constructor() {
-		this.listeners = {}
-	}
+  constructor() {
+    this.listeners = {}
+  }
 
-	// dispatch, fire, trigger
-	emit(event, ...args) {
-		if (!Array.isArray(this.listeners[event])) {
-			return false
-		}
-		this.listeners[event].forEach(listener => {
-			listener(...args)
-		})
-		return true
-	}
+  // dispatch, fire, trigger
+  // Уведомляем слушателе если они есть
+  // table.emit('table:select', {a: 1})
+  emit(event, ...args) {
+    if (!Array.isArray(this.listeners[event])) {
+      return false
+    }
+    this.listeners[event].forEach(listener => {
+      listener(...args)
+    })
+    return true
+  }
 
-	// on, listen
-	subscribe(event, fn) {
-		this.listeners[event] = this.listeners[event] || []
-		this.listeners[event].push(fn)
-		return () => {
-			this.listeners[event] = this.listeners[event].filter(listener => listener !== fn)
-		}
-	}
+  // on, listen
+  // Подписываемся на уведомление
+  // Добавляем нового слушателя
+  // formula.subscribe('table:select', () => {})
+  subscribe(event, fn) {
+    this.listeners[event] = this.listeners[event] || []
+    this.listeners[event].push(fn)
+    return () => {
+      this.listeners[event] =
+        this.listeners[event].filter(listener => listener !== fn)
+    }
+  }
 }
 
-// // Example
+// Example
 // const emitter = new Emitter()
 //
-// const unsub = emitter.subscribe('Jeff', data => console.log('Sub:', data))
-// emitter.emit('Jeff', 10)
+// const unsub = emitter.subscribe('vladilen', data => console.log(data))
+// emitter.emit('1231231', 42)
 //
 // setTimeout(() => {
-// 	emitter.emit('Jeff', 'after 2 seconds')
-// }, 2e3)
+//   emitter.emit('vladilen', 'After 2 seconds')
+// }, 2000)
 //
 // setTimeout(() => {
-// 	emitter.emit('Jeff', 'after 4 seconds')
-// }, 4e3)
-//
-// setTimeout(() => unsub(), 5e3)
+//   unsub()
+// }, 3000)
 //
 // setTimeout(() => {
-// 	emitter.emit('Jeff', 'after 8 seconds')
-// }, 8e3)
+//   emitter.emit('vladilen', 'After 4 seconds')
+// }, 4000)

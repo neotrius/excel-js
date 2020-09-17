@@ -13,6 +13,10 @@ class Dom {
     return this.$el.outerHTML.trim()
   }
 
+  text(text) {
+    this.$el.textContent = text
+  }
+
   clear() {
     this.html('')
     return this
@@ -26,8 +30,8 @@ class Dom {
     this.$el.removeEventListener(eventType, callback)
   }
 
-  find(selector){
-  	return $(this.$el.querySelector(selector))
+  find(selector) {
+    return $(this.$el.querySelector(selector))
   }
 
   append(node) {
@@ -68,27 +72,28 @@ class Dom {
         })
   }
 
-  id(parse){
-  	if(parse){
-		  const parsed = this.id().split(':')
-		  return {
-  			row: +parsed[0],
-			  col: +parsed[1]
-		  }
-	  }
-  	return this.data.id
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':')
+      return {
+        row: +parsed[0],
+        col: +parsed[1]
+      }
+    }
+    return this.data.id
   }
 
-  focus(){
-  	this.$el.focus()
-	  return this
+  focus() {
+    this.$el.focus()
+    return this
   }
 
-  addClass(className){
-  	this.$el.classList.add(className)
+  addClass(className) {
+    this.$el.classList.add(className)
   }
-  removeClass(className){
-  	this.$el.classList.remove(className)
+
+  removeClass(className) {
+    this.$el.classList.remove(className)
   }
 }
 

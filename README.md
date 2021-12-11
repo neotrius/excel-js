@@ -1,6 +1,6 @@
 # excel-JS
 
-Building a JS framework with [vladilen.ru](https://vladilen.ru) help
+Building a JS framework with [vladilen.ru](https://vladilen.ru)
 
 This project is focused to enhance JS skills and programming in general
 
